@@ -9,6 +9,8 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function Home() {
   const [propertySearch, setPropertySearch] = useState(true)
@@ -225,19 +227,42 @@ export default function Home() {
         </div>
         {propertySearch ? 
         <div className="fill-transparent w-[90%] m-auto left-0 right-0 bg-hb h-48 rounded-lg p-3 grid grid-flow-row grid-rows-3 gap-3">
-          <div className='grid grid-flow-col grid-cols-3 gap-3'>
-            <input className='rounded-lg p-2 h-12' placeholder='Rent'/>
-            <input className='rounded-lg p-2 h-12 col-span-2' placeholder='Rent'/>
-            <input className='rounded-lg p-2 h-12' placeholder='Rent'/>
+          <div className='grid grid-flow-col grid-cols-4 gap-3'>
+            <div className='rounded-lg relative h-12'>
+            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Rent'/>
+            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
+            </div>
+            <div className='rounded-lg relative h-12 col-span-2'>
+            <input placeholder='Enter Location' className='rounded-lg p-2 absolute h-full m-auto left-0 right-0'/>
+            <LocationOnIcon style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
+            </div>
+            <div className='rounded-lg relative h-12'>
+            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Resedential'/>
+            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
+            </div>
           </div>
-          <div className='grid grid-flow-col grid-cols-3 gap-3'>
-            <input className='rounded-lg p-2 h-12' placeholder='Rent'/>
-            <input className='rounded-lg p-2 h-12' placeholder='Rent'/>
-            <input className='rounded-lg p-2 h-12' placeholder='Rent'/>
-            <input className='rounded-lg p-2 h-12' placeholder='Rent'/>
+          <div className='grid grid-flow-col grid-cols-4 gap-3'>
+          <div className='rounded-lg relative h-12'>
+            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Beds & Baths'/>
+            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
+            </div>
+            <div className='rounded-lg relative h-12'>
+            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Area (sqft'/>
+            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
+            </div>
+            <div className='rounded-lg relative h-12'>
+            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Price (AED)'/>
+            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
+            </div>
+            <button className='text-white bg-green-500 rounded-lg font-semibold' >Find</button>
           </div>
-          <div className='grid grid-flow-col grid-cols-1 gap-3'>
-            <input className='rounded-lg p-2 h-12' placeholder='Rent'/>
+          <div className='grid grid-flow-col grid-cols-1'>
+          <div className='rounded-lg relative w-full h-12'>
+            <img src="/commute_banner.svg" className='rounded-lg absolute h-full m-auto left-0 right-0'/>
+            <div className='h-full p-3'>
+            <h1 className="absolute h-full left-6"><span className='rounded-2xl bg-red-600 text-white mr-3 px-2'><span className='text-xs'>NEW</span></span>{" "}<span className='font-bold text-gray-700 mr-3'>Search 2.0</span>{" "}<span>Find homes by commute time</span><ArrowForwardIosIcon className='w-3 ml-4'/></h1>
+            </div>
+            </div>
           </div>
         </div> : 
         <div>
