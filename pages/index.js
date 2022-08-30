@@ -346,7 +346,7 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
             </ListItem>
             <div className='rounded-lg relative h-12 col-span-2'>
             <input placeholder='Enter Location' className='rounded-lg p-2 absolute h-full m-auto left-0 right-0'/>
-            <LocationOnIcon style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
+            <LocationOnIcon style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-[100%]'/>
             </div>
             <ListItem className='rounded-lg relative h-12 bg-white p-3' disablePadding disableGutters sx={{ width: '100%'}}>
               <ListItemButton disableGutters onClick={() => handlePropertySearchItemsClick(propertySearchMenuItems[1].name, false)}>
@@ -482,7 +482,7 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
           <div className='rounded-lg relative w-full h-12'>
             <img src="/commute_banner.svg" className='rounded-lg absolute h-full m-auto left-0 right-0'/>
             <div className='h-full p-3'>
-            <h1 className="absolute h-full left-6"><span className='rounded-2xl bg-red-600 text-white mr-3 px-2'><span className='text-xs'>NEW</span></span>{" "}<span className='font-bold text-gray-700 mr-3'>Search 2.0</span>{" "}<span>Find homes by commute time</span><ArrowForwardIosIcon className='w-3 ml-4'/></h1>
+            <h1 className="absolute h-full left-6"><span className='rounded-2xl bg-red-600 text-white mr-3 px-2 py-1'><span className='text-xs'>NEW</span></span>{" "}<span className='font-bold text-gray-700 mr-3'>Search 2.0</span>{" "}<span>Find homes by commute time</span><ArrowForwardIosIcon className='w-3 ml-4'/></h1>
             </div>
             </div>
           </div>
@@ -504,7 +504,7 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
           <div className='rounded md:relative md:h-[300px] sm:h-[100px] sm:mx-2 border sm:flex'>
           <img className='md:absolute rounded-lg md:w-[100%]' src='/Search2.svg'/>
           <div className='md:absolute sm:p-2 sm:pt-4 md:mt-5 md:left-5 md:w-[60%]'>
-            <h1 style={{color: "#222"}} className='font-semibold md:text-2xl md:mb-5 sm:mb-2'>Search 2.0 <span className='rounded-2xl bg-red-600 text-white px-2'><span className='text-xs'>NEW</span></span></h1>
+            <h1 style={{color: "#222"}} className='font-semibold md:text-2xl md:mb-5 sm:mb-2'>Search 2.0 <span className='rounded-2xl bg-red-600 text-white px-3 pb-1'><span className='text-xs'>NEW</span></span></h1>
             <p className='sm:text-xs'>Find homes by commute time</p>
           </div>
           <div className='sm:m-auto md:hidden sm:left-0 sm:right-0'>&gt;</div>
