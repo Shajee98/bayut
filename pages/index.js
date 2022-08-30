@@ -346,7 +346,7 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
             </ListItem>
             <div className='rounded-lg relative h-12 col-span-2'>
             <input placeholder='Enter Location' className='rounded-lg p-2 absolute h-full m-auto left-0 right-0'/>
-            <LocationOnIcon style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-[100%]'/>
+            <LocationOnIcon style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-[100%] py-2'/>
             </div>
             <ListItem className='rounded-lg relative h-12 bg-white p-3' disablePadding disableGutters sx={{ width: '100%'}}>
               <ListItemButton disableGutters onClick={() => handlePropertySearchItemsClick(propertySearchMenuItems[1].name, false)}>
