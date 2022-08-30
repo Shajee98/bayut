@@ -18,7 +18,7 @@ export default function Home() {
   const [openSubMenu, setOpenSubMenu] = useState(false)
   const [openPSDrawer,setOpenPSDrawer] = useState(false)
   const [switchPropertyType, setSwitchPropertyType] = useState(true)
-  const [propertyPurpose, SetpropertyPurpose] = useState("Residential")
+  const [propertyPurpose, setPropertyPurpose] = useState("Residential")
   const propertyTypes = [{
     name: "Apartment",
     ApartmentIcon: ApartmentIcon
@@ -44,10 +44,37 @@ export default function Home() {
     ApartmentIcon: ApartmentIcon
   }
 ] 
-  const handleClick = () => {
-    setOpenSubMenu(!openSubMenu);
+const [sideBarMenu, setSideSubMenu] = useState([{name: "Blog", collapse: false},{name: "Find an Agency", collapse: false},{name: "Floor Plans", collapse: false},{name: "Guides", collapse: false},{name: "Market Intelligence", collapse: false},{name: "Agent Portal", collapse: false},{name: "Events", collapse: false},{name: "Careers", collapse: false},{name: "Comapany", collapse: false}])
+const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "Rent", collapse: false},{name: "Residential", collapse: false},{name: "Beds & Baths", collapse: false},{name: "Area (sqft)", collapse: false},{name: "Price (AED)", collapse: false}])
+  const handleSideBarMenuItemsClick = ({name, collapse}) => {
+    const menuItem = sideBarMenu.find((item) => item.name === name)
+    setSideSubMenu(sideBarMenu => sideBarMenu.map(item => {if (item.name === menuItem.name) {
+      item.collapse = !menuItem.collapse
+    }
+      return item
+    }))
+    console.log(sideBarMenu)
   };
-
+  const handlePropertySearchItemsClick = (name, collapse) => {
+    const menuItem = propertySearchMenuItems.find((item) => item.name === name)
+    setPropertySearchMenuItems(propertySearchMenuItems => propertySearchMenuItems.map(item => {if (item.name === menuItem.name) {
+      item.collapse = !menuItem.collapse
+      }
+      return item
+      })
+    )
+    console.log(propertySearchMenuItems)
+  }
+  const changepropertySearchMenuItemName = (e, name) => {
+    const menuItem = propertySearchMenuItems.find((item) => item.name === name)
+    setPropertySearchMenuItems(propertySearchMenuItems => propertySearchMenuItems.map(item => {if (item.name === menuItem.name) {
+      item.name = e.target.value
+      }
+      return item
+      })
+    )
+    console.log(propertySearchMenuItems)
+  }
   return (
     <div>
       <Head>
@@ -63,18 +90,18 @@ export default function Home() {
           <CancelPresentationIcon className='absolute right-3' onClick={() => setOpenPSDrawer(false)}/>
         </div>
         <div className='m-auto mb-6 border left-0 rounded right-0 bg-h_b w-full h-10 grid grid-flow-col grid-cols-2 gap-1 p-1'>
-          <button style={switchPropertyType ? {backgroundColor: "rgb(134 239 172)", color: "rgb(22 163 74)"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setSwitchPropertyType(true)} className='w-[100%] rounded h-full text-white font-semibold'>Buy</button>
-          <button style={switchPropertyType ? {color: "rgba(34,34,34,.75)"} : {backgroundColor: "rgb(134 239 172)", color: "rgb(22 163 74)"}} onClick={() => setSwitchPropertyType(false)} className='w-[100%] rounded h-full font-semibold text-white'>Rent</button>
+          <button style={switchPropertyType ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setSwitchPropertyType(true)} className='w-[100%] rounded h-full text-white font-semibold'>Buy</button>
+          <button style={switchPropertyType ? {color: "rgba(34,34,34,.75)"} : {backgroundColor: "#e9f7f0", color: "#28b16d"}} onClick={() => setSwitchPropertyType(false)} className='w-[100%] rounded h-full font-semibold text-white'>Rent</button>
         </div>
         {switchPropertyType ? 
         <div>
           <h1 className='font-semibold text-xs mb-2'>Location</h1>
           <input placeholder='e.g. Marina Diamonds' className='w-full rounded border mb-2 h-8 p-2'/>
-          <img src="/commute_banner.svg" className='w-full h-32 rounded-lg mb-4'/>
+          <img src="/commute_banner.png" className='w-full h-32 rounded-lg mb-4'/>
           <h1 className='font-semibold text-xs mb-2'>Property Type</h1>
           <div className='m-auto mb-6 border left-0 rounded right-0 bg-h_b w-full h-10 grid grid-flow-col grid-cols-2 gap-1 p-1'>
-          <button style={propertyPurpose === "Residential" ? {backgroundColor: "rgb(134 239 172)", color: "rgb(22 163 74)"} : {color: "rgba(34,34,34,.75)"}} onClick={() => SetpropertyPurpose("Residential")} className='w-[100%] fill-transparent rounded h-full text-white font-semibold'>Residential</button>
-          <button style={propertyPurpose === "Commercial" ? {backgroundColor: "rgb(134 239 172)", color: "rgb(22 163 74)"} : {color: "rgba(34,34,34,.75)"}} onClick={() => SetpropertyPurpose("Commercial")} className='w-[100%] fill-transparent rounded h-full font-semibold text-white'>Commercial</button>
+          <button style={propertyPurpose === "Residential" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setPropertyPur("Residential")} className='w-[100%] fill-transparent rounded h-full text-white font-semibold'>Residential</button>
+          <button style={propertyPurpose === "Commercial" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setPropertyPur("Commercial")} className='w-[100%] fill-transparent rounded h-full font-semibold text-white'>Commercial</button>
         </div>
         {
           propertyPurpose === "Residential" ? 
@@ -126,7 +153,6 @@ export default function Home() {
           <div className='text-sm px-3 py-1 h-full  border rounded-xl'>6+</div>
          </div>
          <h1 className='font-semibold text-xs mb-2'>Price</h1>
-         {/* <div className='grid grid-flow-row gap-2 grid-rows-2'> */}
           <div className='grid grid-flow-cols gap-2 mb-2 grid-cols-2'>
             <div className='flex flex-col space-y-2 text-xs justify-start'>
               <h1>Minimum</h1>
@@ -165,35 +191,87 @@ export default function Home() {
             <SettingFilled />
           <CloseOutlined onClick={() => setOpenDrawer(!openDrawer)} />
           </div>
-          <Button className='text-white font-semibold w-[100%] bg-green-900'>Signup or Login</Button>
+          <button className='text-white h-8 rounded mb-4 font-semibold w-[100%] bg-green-900'>Signup or Login</button>
           <List disablePadding className='w-[100%]' component="nav">
-            {["Blog","Find an Agency","Floor Plans","Guides","Market Intelligence","Agent Portal","Events","Careers","Comapany"].map((text, key) => (
-              [4,5,7,9].includes(key) ? 
+            {sideBarMenu.map((item, key) => (
+              [3,4,6,8].includes(key) ? 
+              <>
               <ListItem disablePadding disableGutters key={key} sx={{ width: '100%'}}>
-                <ListItemButton disableGutters onClick={handleClick}>
-                  <ListItemText primary={text} />
-                  {openSubMenu ? <ExpandLess /> : <ExpandMore />}
+                <ListItemButton disableGutters onClick={() => handleSideBarMenuItemsClick({name: item.name, collapse: item.collapse})}>
+                  <ListItemText primary={item.name} className="font-bold" />
+                  {item.collapse ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
-              <Collapse in={openSubMenu} timeout="auto" unmountOnExit>
-                {/* <List component="div" disablePadding>
-                  <ListItem disablePadding disableGutters>
-                  <ListItemButton disableGutters>
-                    <ListItemText primary="Starred" />
-                  </ListItemButton>
+                </ListItem>                
+              <Collapse in={item.collapse}  timeout={500} unmountOnExit>
+                <List component="div" disablePadding>
+                  {key === 3 &&
+                  <>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="Area Guides" className='ml-1'/>
                   </ListItem>
-                </List> */}
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="Building Guides" className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="School Guides" className='ml-1'/>
+                  </ListItem>
+                  </>
+                  }
+                  {key === 4 &&
+                  <>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary={<h1>TruValue&#8482;</h1>} className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="Property Prices" className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary={<h1>Dubai Transactions{" "}<span className='rounded-lg bg-red-200 text-red-600 font-bold mr-3 px-2'><span className='text-xs'>NEW</span></span></h1>} className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="New Projects" className='ml-1'/>
+                  </ListItem>
+                  </>
+                  }
+                  {key === 6 &&
+                  <>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="B3DXB 2022" className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="Your Home Your Choice" className='ml-1'/>
+                  </ListItem>
+                  </>
+                  }
+                   {key === 8 &&
+                  <>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="About Us" className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="Contact Us" className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="Terms Of Use" className='ml-1'/>
+                  </ListItem>
+                  <ListItem button disablePadding disableGutters>
+                    <ListItemText primary="Privacy Policy" className='ml-1'/>
+                  </ListItem>
+                  </>
+                  }
+                </List>
               </Collapse>
-              </ListItem> : 
+              </> : 
               <ListItem key={key} disablePadding disableGutters>
               <ListItemButton disableGutters>
-              <ListItemText primary={text}/>
+              <ListItemText primary={item.name}/>
               </ListItemButton>
               </ListItem>
             ))}
             <Divider className='mb-3'/>
               <div>
                 <h2>Download the Bayut app:</h2>
-                {/* <img src='/play_store.png' className='w-16 h-14'/> */}
+                <img src='/google.svg' className='w-28 h-14'/>
               </div>
             <Divider />
             <ListItem disablePadding disableGutters>
@@ -228,32 +306,176 @@ export default function Home() {
         {propertySearch ? 
         <div className="fill-transparent w-[90%] m-auto left-0 right-0 bg-hb h-48 rounded-lg p-3 grid grid-flow-row grid-rows-3 gap-3">
           <div className='grid grid-flow-col grid-cols-4 gap-3'>
-            <div className='rounded-lg relative h-12'>
-            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Rent'/>
-            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
-            </div>
+            <ListItem className='rounded-lg relative h-12 bg-white p-3' disablePadding disableGutters sx={{ width: '100%'}}>
+              <ListItemButton disableGutters onClick={() => handlePropertySearchItemsClick(propertySearchMenuItems[0].name,false)}>
+                <ListItemText primary={propertySearchMenuItems[0].name} />
+                {propertySearchMenuItems[0].collapse ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              {propertySearchMenuItems[0].collapse &&
+              <div className="absolute bg-white flex w-[160%] rounded-lg top-[60px] left-0 shadow-xl z-10 flex-col p-3">
+                <h1 className="font-bold mb-2 text-[#4c4a4a]">Purpose</h1>
+                <div className='m-auto mb-6 border left-0 right-0 bg-h_b w-full h-10 grid grid-flow-col grid-cols-2 gap-1 p-1'>
+                <button style={propertySearchMenuItems[0].name === "Buy" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} value="Buy" onClick={(e) => changepropertySearchMenuItemName(e,"Rent")} className='w-[100%] fill-transparent rounded h-full text-white font-semibold'>Buy</button>
+                <button style={propertySearchMenuItems[0].name === "Rent" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} value="Rent" onClick={(e) => changepropertySearchMenuItemName(e,"Buy")} className='w-[100%] fill-transparent rounded h-full font-semibold text-white'>Rent</button>
+              </div>
+              {propertySearchMenuItems[0].name === "Buy" ? 
+                <div className='flex flex-col'>
+                  <h1 className="font-bold mb-2 text-[#4c4a4a]">Completion Status</h1>
+                  <div className='flex h-7 mb-4'>
+                  <div style={{borderColor: "#28b16d", color: "#28b16d", backgroundColor: "#e9f7f0"}} className='w-[30%] mr-3 text-sm font-semibold p-1 text-center border rounded-2xl'>All</div>
+                  <div className='w-[30%] text-sm p-1 mr-3 text-center font-medium text-gray-400 border rounded-2xl'>Ready</div>
+                  <div className='w-[40%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Off-Plan</div>
+                </div>
+                </div> : 
+                <div className='flex flex-col'>
+                <h1 className="font-bold mb-2 text-[#4c4a4a]">Rent Frequency</h1>
+                <div className='flex gap-2 mb-4 flex-wrap'>
+                  <div style={{borderColor: "#28b16d", color: "#28b16d", backgroundColor: "#e9f7f0"}} className='w-[30%] mr-1 text-sm font-medium text-gray-400 p-1 text-center border rounded-2xl'>Yearly</div>
+                  <div className='w-[30%] text-sm p-1 mr-5 text-center font-medium text-gray-400 border rounded-2xl'>Monthly</div>
+                  <div className='w-[30%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Weekly</div>
+                  <div className='w-[25%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Daily</div>
+                  <div className='w-[20%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Any</div>
+                </div>
+                </div>
+              }
+              <div className='m-auto w-full h-12 grid grid-flow-col grid-cols-2 gap-2 py-1'>
+                <button className='w-[100%] rounded-lg h-full border font-semibold' style={{borderColor: "#006169", color: "#006169"}}>Reset</button>
+                <button className='w-[100%] rounded-lg h-full font-semibold text-white' style={{backgroundColor: "#006169"}}>Done</button>
+              </div>
+              </div>}
+            </ListItem>
             <div className='rounded-lg relative h-12 col-span-2'>
             <input placeholder='Enter Location' className='rounded-lg p-2 absolute h-full m-auto left-0 right-0'/>
             <LocationOnIcon style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
             </div>
-            <div className='rounded-lg relative h-12'>
-            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Resedential'/>
-            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
-            </div>
+            <ListItem className='rounded-lg relative h-12 bg-white p-3' disablePadding disableGutters sx={{ width: '100%'}}>
+              <ListItemButton disableGutters onClick={() => handlePropertySearchItemsClick(propertySearchMenuItems[1].name, false)}>
+                <ListItemText primary={propertySearchMenuItems[1].name} />
+                {propertySearchMenuItems[1].collapse ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              {propertySearchMenuItems[1].collapse && 
+              <div className="absolute bg-white flex w-[210%] rounded-lg top-[60px] right-0 shadow-xl z-10 flex-col p-3">
+                <div className="flex h-8 border-b-[0.5px] border-solid z-0 border-[#767676] mb-5">
+                <button className='w-[100%] h-full font-medium z-10' style={propertyPurpose === "Residential" ? {borderBottomColor: "#28b16d", color: "#28b16d", borderBottomWidth: "1.5px", fontWeight: 500} : {color: "#767676"}} onClick={() => setPropertyPurpose("Residential")}>Residential</button>
+                <button className='w-[100%] h-full font-medium z-10' style={propertyPurpose === "Commercial" ? {borderBottomColor: "#28b16d", color: "#28b16d", borderBottomWidth: "1.5px", fontWeight: 500} : {color: "#767676"}} onClick={() => setPropertyPurpose("Commercial")}>Commercial</button>
+                </div>
+                {propertyPurpose === "Residential" ? 
+                <div className='flex flex-wrap gap-3 mb-5'>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Apartment</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Villa</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Townhouse</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Penthouse</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Villa Compound</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Hotel Apartment</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Residential Plot</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Residential Floor</div>
+                  <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Residential Building</div>
+                </div> :
+                <div className='flex flex-wrap gap-3 mb-5'>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Office</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Shop</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Warehouse</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Labour Camp</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Commercial Villa</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Bulk Unit</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Commercial Plot</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Commercial Floor</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Commercial Building</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Factory</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Industrial Land</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Mixed Used Land</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Showroom</div>
+                <div className='w-[48%] text-sm p-1 text-center font-medium text-gray-400 border rounded-2xl'>Other Commercial</div>
+              </div>}
+                <div className='m-auto w-full h-12 grid grid-flow-col grid-cols-2 gap-2 py-1'>
+                <button className='w-[100%] rounded-lg h-full border font-semibold' style={{borderColor: "#006169", color: "#006169"}}>Reset</button>
+                <button className='w-[100%] rounded-lg h-full font-semibold text-white' style={{backgroundColor: "#006169"}}>Done</button>
+              </div>
+                </div>}
+            </ListItem> 
           </div>
           <div className='grid grid-flow-col grid-cols-4 gap-3'>
-          <div className='rounded-lg relative h-12'>
-            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Beds & Baths'/>
-            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
-            </div>
-            <div className='rounded-lg relative h-12'>
-            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Area (sqft'/>
-            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
-            </div>
-            <div className='rounded-lg relative h-12'>
-            <input className='rounded-lg p-2 absolute h-full m-auto left-0 right-0' placeholder='Price (AED)'/>
-            <ExpandMore style={{color: "rgb(75 85 99)"}} className='absolute right-4 h-full'/>
-            </div>
+            <ListItem className='rounded-lg relative h-12 bg-white p-3' disablePadding disableGutters sx={{ width: '100%'}}>
+              <ListItemButton disableGutters onClick={() => handlePropertySearchItemsClick(propertySearchMenuItems[2].name, false)}>
+                <ListItemText primary={propertySearchMenuItems[2].name} />
+                {propertySearchMenuItems[2].collapse ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              {propertySearchMenuItems[2].collapse && <div className="absolute bg-white flex w-[210%] rounded-lg top-[60px] right-0 shadow-xl z-10 flex-col p-3">
+                <div className="flex flex-col gap-x-3">
+                  <h1 className="font-bold mb-2 text-[#4c4a4a]">Beds</h1>
+                  <div className='flex flex-wrap gap-3 mb-2'>
+                    <div className='bg-[#e9f7f0] text-[#28b16d] text-sm px-3 py-1 text-center border rounded-xl'>Studio</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>1</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>2</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>3</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>4</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>5</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>6</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>7</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>8+</div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-x-3">
+                  <h1 className="font-bold mb-2 text-[#4c4a4a]">Baths</h1>
+                  <div className='flex flex-wrap gap-3 mb-2'>
+                    <div className='text-sm px-5 py-1 h-full bg-[#e9f7f0] text-[#28b16d] border rounded-2xl'>1</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>2</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>3</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>4</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>5</div>
+                    <div className='text-sm px-5 py-1 h-full  border rounded-2xl'>6+</div>
+                  </div>
+                </div>
+              <div className='m-auto w-full h-12 grid grid-flow-col grid-cols-2 gap-2 py-1'>
+                <button className='w-[100%] rounded-lg h-full border font-semibold' style={{borderColor: "#006169", color: "#006169"}}>Reset</button>
+                <button className='w-[100%] rounded-lg h-full font-semibold text-white' style={{backgroundColor: "#006169"}}>Done</button>
+              </div>
+              </div>}
+            </ListItem> 
+            <ListItem className='rounded-lg relative h-12 bg-white p-3' disablePadding disableGutters sx={{ width: '100%'}}>
+              <ListItemButton disableGutters onClick={() => handlePropertySearchItemsClick(propertySearchMenuItems[3].name, false)}>
+                <ListItemText primary={propertySearchMenuItems[3].name} />
+                {propertySearchMenuItems[3].collapse ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              {propertySearchMenuItems[3].collapse && <div className="absolute bg-white flex w-[210%] rounded-lg top-[60px] right-0 shadow-xl z-10 flex-col p-3">
+              <div className='grid grid-flow-cols gap-2 mb-2 grid-cols-2'>
+                <div className='flex flex-col space-y-2 text-sm text-[#767676] justify-start'>
+                  <h1>Minimum sqft</h1>
+                  <input placeholder='0' className='border p-2 rounded-lg'/>
+                </div>
+                <div className='flex flex-col space-y-2 text-sm text-[#767676] justify-start'>
+                  <h1>Maximum sqft</h1>
+                  <input placeholder='Any' className='border p-2 rounded-lg'/>
+                </div>
+              </div>
+              <div className='m-auto w-full h-12 grid grid-flow-col grid-cols-2 gap-2 py-1'>
+                <button className='w-[100%] rounded-lg h-full border font-semibold' style={{borderColor: "#006169", color: "#006169"}}>Reset</button>
+                <button className='w-[100%] rounded-lg h-full font-semibold text-white' style={{backgroundColor: "#006169"}}>Done</button>
+              </div>
+              </div>}
+            </ListItem> 
+            <ListItem className='rounded-lg relative h-12 bg-white p-3' disablePadding disableGutters sx={{ width: '100%'}}>
+              <ListItemButton disableGutters onClick={() => handlePropertySearchItemsClick(propertySearchMenuItems[4].name, false)}>
+                <ListItemText primary={propertySearchMenuItems[4].name} />
+                {propertySearchMenuItems[4].collapse ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              {propertySearchMenuItems[4].collapse && <div className="absolute bg-white flex w-[210%] rounded-lg top-[60px] right-0 shadow-xl z-10 flex-col p-3">
+              <div className='grid grid-flow-cols gap-2 mb-2 grid-cols-2'>
+                <div className='flex flex-col space-y-2 text-sm text-[#767676] justify-start'>
+                  <h1>Minimum</h1>
+                  <input placeholder='0' className='border p-2 rounded-lg'/>
+                </div>
+                <div className='flex flex-col space-y-2 text-sm text-[#767676] justify-start'>
+                  <h1>Maximum</h1>
+                  <input placeholder='Any' className='border p-2 rounded-lg'/>
+                </div>
+              </div>
+              <div className='m-auto w-full h-12 grid grid-flow-col grid-cols-2 gap-2 py-1'>
+                <button className='w-[100%] rounded-lg h-full border font-semibold' style={{borderColor: "#006169", color: "#006169"}}>Reset</button>
+                <button className='w-[100%] rounded-lg h-full font-semibold text-white' style={{backgroundColor: "#006169"}}>Done</button>
+              </div>
+              </div>}
+            </ListItem> 
             <button className='text-white bg-green-500 rounded-lg font-semibold' >Find</button>
           </div>
           <div className='grid grid-flow-col grid-cols-1'>
