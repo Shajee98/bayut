@@ -100,8 +100,8 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
           <img src="/commute_banner.png" className='w-full h-32 rounded-lg mb-4'/>
           <h1 className='font-semibold text-xs mb-2'>Property Type</h1>
           <div className='m-auto mb-6 border left-0 rounded right-0 bg-h_b w-full h-10 grid grid-flow-col grid-cols-2 gap-1 p-1'>
-          <button style={propertyPurpose === "Residential" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setPropertyPur("Residential")} className='w-[100%] fill-transparent rounded h-full text-white font-semibold'>Residential</button>
-          <button style={propertyPurpose === "Commercial" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setPropertyPur("Commercial")} className='w-[100%] fill-transparent rounded h-full font-semibold text-white'>Commercial</button>
+          <button style={propertyPurpose === "Residential" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setPropertyPurpose("Residential")} className='w-[100%] fill-transparent rounded h-full text-white font-semibold'>Residential</button>
+          <button style={propertyPurpose === "Commercial" ? {backgroundColor: "#e9f7f0", color: "#28b16d"} : {color: "rgba(34,34,34,.75)"}} onClick={() => setPropertyPurpose("Commercial")} className='w-[100%] fill-transparent rounded h-full font-semibold text-white'>Commercial</button>
         </div>
         {
           propertyPurpose === "Residential" ? 
@@ -495,27 +495,27 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
       <div className='md:grid md:grid-flow-col md:m-auto md:left-0 md:right-0 md:grid-cols-3 md:max-w-[80%] gap-4 sm:grid sm:grid-flow-row sm:grid-rows-3'>
           <div className='rounded md:relative md:h-[300px] sm:h-[100px] sm:mx-2 border sm:flex'>
             <img className='md:absolute rounded-lg md:w-[100%]' src='/TruCheck.svg'/>
-            <div className='md:absolute sm:p-2 sm:pt-4 md:mt-5 md:left-5 md:w-[60%]'>
+            <div className='md:absolute sm:p-2 sm:pt-4 md:mt-5 sm:w-[90%] md:left-5 md:w-[60%]'>
             <h1 style={{color: "#222"}} className='font-semibold md:text-2xl md:mb-5 sm:mb-2'>TruCheck&#8482;</h1>
             <p className='md:w-[80%] sm:text-xs'>Filter your result with validated, available listings</p>
             </div>
-            <div className='sm:m-auto md:hidden sm:left-0 sm:right-0'>&gt;</div>
+            <div className='sm:m-auto md:hidden sm:left-0 sm:w-[10%] sm:right-0'>&gt;</div>
           </div>
           <div className='rounded md:relative md:h-[300px] sm:h-[100px] sm:mx-2 border sm:flex'>
           <img className='md:absolute rounded-lg md:w-[100%]' src='/Search2.svg'/>
-          <div className='md:absolute sm:p-2 sm:pt-4 md:mt-5 md:left-5 md:w-[60%]'>
+          <div className='md:absolute sm:p-2 sm:pt-4 md:mt-5 sm:w-[90%] md:left-5 md:w-[60%]'>
             <h1 style={{color: "#222"}} className='font-semibold md:text-2xl md:mb-5 sm:mb-2'>Search 2.0 <span className='rounded-2xl bg-red-600 text-white px-3 pb-1'><span className='text-xs'>NEW</span></span></h1>
             <p className='sm:text-xs'>Find homes by commute time</p>
           </div>
-          <div className='sm:m-auto md:hidden sm:left-0 sm:right-0'>&gt;</div>
+          <div className='sm:m-auto md:hidden sm:left-0 sm:w-[10%] sm:right-0'>&gt;</div>
           </div>
           <div className='rounded md:relative md:h-[300px] sm:h-[100px] sm:mx-2 border sm:flex'>
           <img className='md:absolute rounded-lg md:w-[100%]' src='/map_view.svg'/>
-          <div className='md:absolute sm:p-2 sm:pt-4 md:mt-5 md:left-5 md:w-[60%]'>
+          <div className='md:absolute sm:p-2 sm:pt-4 md:mt-5 sm:w-[90%] md:left-5 md:w-[60%]'>
             <h1 style={{color: "#222"}} className='font-semibold md:text-2xl md:mb-5 sm:mb-2'>Map View</h1>
             <p className='sm:text-xs'>Search for properties in preferred areas using a map</p>
           </div>
-          <div className='sm:m-auto md:hidden sm:left-0 sm:right-0'>&gt;</div>
+          <div className='sm:m-auto md:hidden sm:left-0 sm:w-[10%] sm:right-0'>&gt;</div>
           </div>
       </div>
     </div>
