@@ -19,7 +19,7 @@ export default function Home() {
   const [openPSDrawer,setOpenPSDrawer] = useState(false)
   const [switchPropertyType, setSwitchPropertyType] = useState(true)
   const [propertyPurpose, setPropertyPurpose] = useState("Residential")
-  const propertyTypes = [{
+  const residentialPropertyTypes = [{
     name: "Apartment",
     ApartmentIcon: ApartmentIcon
   },
@@ -43,6 +43,31 @@ export default function Home() {
     name: "Hotel Compound",
     ApartmentIcon: ApartmentIcon
   }
+] 
+const commercialPropertyTypes = [{
+  name: "Office",
+  ApartmentIcon: ApartmentIcon
+},
+{
+  name: "Shop",
+  ApartmentIcon: ApartmentIcon
+},
+{
+  name: "Warehouse",
+  ApartmentIcon: ApartmentIcon
+},
+{
+  name: "Labour Camp",
+  ApartmentIcon: ApartmentIcon
+},
+{
+  name: "Commercial Villa",
+  ApartmentIcon: ApartmentIcon
+},
+{
+  name: "Bulk Unit",
+  ApartmentIcon: ApartmentIcon
+}
 ] 
 const [sideBarMenu, setSideSubMenu] = useState([{name: "Blog", collapse: false},{name: "Find an Agency", collapse: false},{name: "Floor Plans", collapse: false},{name: "Guides", collapse: false},{name: "Market Intelligence", collapse: false},{name: "Agent Portal", collapse: false},{name: "Events", collapse: false},{name: "Careers", collapse: false},{name: "Comapany", collapse: false}])
 const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "Rent", collapse: false},{name: "Residential", collapse: false},{name: "Beds & Baths", collapse: false},{name: "Area (sqft)", collapse: false},{name: "Price (AED)", collapse: false}])
@@ -106,7 +131,7 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
         {
           propertyPurpose === "Residential" ? 
           <div className='flex mb-5 gap-4 overflow-x-scroll '>
-            {propertyTypes.map((property, index) => (
+            {residentialPropertyTypes.map((property, index) => (
               <div key={index} className='flex flex-shrink-0 flex-col w-20 text-center items-center justify-start'>
               <property.ApartmentIcon />
               <h3>{property.name}</h3>
@@ -115,7 +140,7 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
             )}
           </div> :
             <div className='flex mb-5 gap-4 overflow-x-scroll '>
-              {propertyTypes.map((property, index) => (
+              {commercialPropertyTypes.map((property, index) => (
                 <div key={index} className='flex flex-shrink-0 flex-col w-20 text-center items-center justify-start'>
                   <property.ApartmentIcon />
                   <h3>{property.name}</h3>
@@ -127,13 +152,13 @@ const [propertySearchMenuItems, setPropertySearchMenuItems] = useState([{name: "
         }
          <h1 className='font-semibold text-xs mb-2'>Completion Status</h1>
          <div className='flex w-[60%] h-7 mb-2'>
-          <div className='w-[30%] bg-green-300 mr-3 text-sm p-1 text-center border rounded-xl'>All</div>
+          <div style={{borderColor: "#28b16d", color: "#28b16d", backgroundColor: "#e9f7f0"}} className='w-[30%] mr-3 text-sm p-1 text-center border rounded-xl'>All</div>
           <div className='w-[30%] text-sm p-1 mr-3 text-center border rounded-xl'>Ready</div>
           <div className='w-[40%] text-sm p-1 text-center border rounded-xl'>Off-Plan</div>
          </div>
          <h1 className='font-semibold text-xs mb-2'>Beds</h1>
          <div className='flex flex-shrink-0 gap-3 overflow-x-scroll h-7 mb-2'>
-          <div className='bg-green-300 text-sm px-3 py-1 text-center border rounded-xl'>Studio</div>
+          <div style={{borderColor: "#28b16d", color: "#28b16d", backgroundColor: "#e9f7f0"}} className='text-sm px-3 py-1 text-center border rounded-xl'>Studio</div>
           <div className='text-sm px-3 py-1 h-full  border rounded-xl'>1</div>
           <div className='text-sm px-3 py-1 h-full  border rounded-xl'>2</div>
           <div className='text-sm px-3 py-1 h-full  border rounded-xl'>3</div>
